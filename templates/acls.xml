@@ -1,0 +1,31 @@
+            <config>
+             <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+              <ip>
+               <access-list>
+                                  <extended xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-acl" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" nc:operation="replace">
+                  <name>secondtest</name>
+                                     <access-list-seq-rule xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">
+                    <sequence>10</sequence>
+                     <ace-rule>
+                      <action>permit</action>
+                      <protocol>ip</protocol>
+                      <ipv4-address>20.20.20.0</ipv4-address>
+                      <mask>0.0.0.255</mask>
+                                             <dst-any/>
+                                           </ace-rule>
+                    </access-list-seq-rule>
+                                       <access-list-seq-rule xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">
+                    <sequence>20</sequence>
+                     <ace-rule>
+                      <action>permit</action>
+                      <protocol>ip</protocol>
+                      <ipv4-address>30.30.30.0</ipv4-address>
+                      <mask>0.0.0.255</mask>
+                                             <dst-any/>
+                                           </ace-rule>
+                    </access-list-seq-rule>
+                                        </extended>
+                                   </access-list>
+               </ip>
+              </native>
+             </config>

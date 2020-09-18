@@ -1,0 +1,37 @@
+---
+access_lists:
+  - name: test
+    seq:
+      - id: 10
+        source: 192.168.1.1
+        sourcemask: 0.0.0.255
+        dest: any
+        destmask: 0.0.0.255
+        action: permit
+      - id: 20
+        source: 172.16.1.1
+        sourcemask: 0.0.0.255
+        dest: any
+        destmask: 0.0.0.255
+        action: permit
+  - name: secondtest
+    seq:
+      - id: 10
+        source: 192.168.1.1
+        sourcemask: 0.0.0.255
+        dest: any
+        destmask: 0.0.0.255
+        action: permit
+      - id: 20
+        source: 172.16.1.1
+        sourcemask: 0.0.0.255
+        dest: any
+        destmask: 0.0.0.255
+        action: permit
+      - id: 30
+        source: 10.10.10.1
+        sourcemask: 0.0.0.255
+        dest: any
+        destmask: 0.0.0.255
+        action: permit
+

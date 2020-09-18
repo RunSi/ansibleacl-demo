@@ -1,0 +1,21 @@
+---
+access_lists:
+  - name: secondtest
+    seq:
+      - id: 10
+        source: 9.9.9.0
+        sourcemask: 0.0.0.255
+        dest: any
+        destmask: 0.0.0.255
+        action: permit
+      - id: 20
+        source: 8.7.7.0
+        sourcemask: 0.0.0.255
+        dest: any
+        destmask: 0.0.0.255
+        action: permit
+
+  
+
+
+  

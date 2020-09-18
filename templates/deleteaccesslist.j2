@@ -1,0 +1,13 @@
+            <config>
+             <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+              <ip>
+               <access-list>
+                 {% for acl in access_lists %}
+                 <extended xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-acl" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" nc:operation="delete">
+                  <name>{{acl.name}}</name>
+                    </extended>
+                   {% endfor %}
+                </access-list>
+               </ip>
+              </native>
+             </config>

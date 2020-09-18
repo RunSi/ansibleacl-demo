@@ -1,0 +1,36 @@
+##############################################################
+# Sample: Ansible Playbook for creating ACLs on Cisco IOS XE
+# Author: Simon Hart <sihart@cisco.com>
+#
+# createacl.yaml
+# Will configure the router via the Ansible netconf plugin:
+# create extended access lists using the Cisco Native YANG
+# Model.  The acls.yaml file should be populated with variables
+# for the creation of AC entries.
+##############################################################
+---
+- name: Provision IOS XE Devices
+  hosts: vagrant
+  connection: local
+  gather_facts: false
+
+  vars_files:
+     - ./accesslists/acls.yaml
+
+  tasks:
+     - name: Configure Jinja
+       template: 
+         src: "{{access}}"
+         dest: "./templates/acls.xml"
+
+     - name: Configure ACLS
+       netconf_config:
+         host: "{{mgmt_ip}}"
+         port: "{{netconf_port}}"
+         hostkey_verify: false
+         username: "{{username}}"
+         password: "{{password}}"
+         src: "{{acls}}"
+
+    
+              

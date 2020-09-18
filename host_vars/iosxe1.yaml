@@ -1,0 +1,11 @@
+---
+src: iosxe1.xml
+acls: acls.xml
+mgmt_ip: 127.0.0.1
+mgmt_interface: GigabitEthernet 1
+netconf_port: 3130
+ssh_port: 3122
+username: vagrant
+password: vagrant
+
+

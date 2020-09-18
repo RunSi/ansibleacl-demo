@@ -1,0 +1,18 @@
+<config>
+      <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+        <ip>
+          <access-list>
+          {% for acl in access_lists %}
+            <extended xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-acl">
+              <name>{{acl.name}}</name>
+              <access-list-seq-rule xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" nc:operation="delete">
+                {% for seq in acl.seq %}
+                <sequence>{{seq.id}}</sequence>
+                {% endfor %}
+              </access-list-seq-rule>
+            </extended>
+          {% endfor %}
+          </access-list>
+        </ip>
+      </native>
+    </config>

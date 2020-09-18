@@ -1,0 +1,30 @@
+            <config>
+             <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+              <ip>
+               <access-list>
+                 {% for acl in access_lists %}
+                 <extended xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-acl" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" nc:operation="replace">
+                  <name>{{acl.name}}</name>
+                  {% for seq in acl.seq %}
+                   <access-list-seq-rule xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">
+                    <sequence>{{seq.id}}</sequence>
+                     <ace-rule>
+                      <action>{{seq.action}}</action>
+                      <protocol>ip</protocol>
+                      <ipv4-address>{{seq.source}}</ipv4-address>
+                      <mask>{{seq.sourcemask}}</mask>
+                     {% if seq.dest == 'any' %}
+                        <dst-any/>
+                      {% else %}
+                       <dest-ipv4-address>{{seq.dest}}</dest-ipv4-address>
+                       <dest-mask>{{seq.destmask}}</dest-mask>
+                      {% endif %}
+                     </ace-rule>
+                    </access-list-seq-rule>
+                    {% endfor %}
+                    </extended>
+                   {% endfor %}
+                </access-list>
+               </ip>
+              </native>
+             </config>

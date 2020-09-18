@@ -1,0 +1,37 @@
+##############################################################
+# Sample: Ansible Playbook for creating ACLs on Cisco IOS XE
+# Author: Simon Hart <sihart@cisco.com>
+#
+# deleteacl.yaml
+# Will configure the router via the Ansible netconf plugin:
+# delete extended access lists (not ACL Entries) using the 
+# Cisco Native YANG Model.  The acls.yaml file should be 
+# populated with variables for the deletion of 
+# ACLS.
+##############################################################
+---
+- name: Prepare Device
+  hosts: vagrant
+  connection: local
+  gather_facts: false
+
+  vars_files:
+     - ./accesslists/acls.yaml
+
+  tasks:
+     - name: Configure Jinja
+       template: 
+         src: "{{deleteaccess}}"
+         dest: "./templates/acls.xml"
+
+     - name: Delete ACLS
+       netconf_config:
+         host: "{{mgmt_ip}}"
+         port: "{{netconf_port}}"
+         hostkey_verify: false
+         username: "{{username}}"
+         password: "{{password}}"
+         src: "{{acls}}"
+
+    
+              

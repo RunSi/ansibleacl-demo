@@ -1,0 +1,5 @@
+access: ./templates/accesslist.j2
+mergeaccess: ./templates/mergeaccesslist.j2
+deleteaccess: ./templates/deleteaccesslist.j2
+deleteentries: ./templates/delentries.j2
+replaceacl: ./templates/replaceentries.j2
